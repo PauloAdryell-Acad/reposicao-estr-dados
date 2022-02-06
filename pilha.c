@@ -1,37 +1,41 @@
 #include
 
+typedef *No{
+    int id;
+    char name;
+    int priority;
+    int wait;
+} No;
+
 typedef struct Pilha {
     int topo;
     int capacidade;
-    float *prox;
+    No *prox;
 } Pilha;
+
 
 void inicializa( struct Pilha *p, int capacidade ){
    p->topo = -1;
    p->capacidade = capacidade;
-   p->prox = (float*) malloc (capa * sizeof(float));
+   p->prox = (float*) malloc (capacidade * sizeof(float));
 }
 
-void adiciona ( struct Pilha *p, float v){
-
+void adiciona ( struct Pilha *p, No *processo){
 	p->topo++;
-	p->prox [p->topo] = v;
-
+	p->prox [p->topo] = processo;
 }
 
-float exclui ( struct Pilha *p ){
-
+void exclui(struct Pilha *p){
    float aux = p->prox [p->topo];
    p->topo--;
-   return aux;
-
+   return;
 }
 
 int main(){
 
 	struct Pilha minhapilha;
 	int capacidade, op;
-	float valor;
+	No processo;
 
 	printf( "\nCapacidade da pilha? " );
 	scanf( "%d", &capacidade );
@@ -49,26 +53,35 @@ int main(){
 				if(minhapilha->topo == minhapilha->capacidade - 1)
 					printf("\nPILHA CHEIA! \n");
 				else {
-					printf("\nVALOR? ");
-					scanf("%f", &valor);
-					adiciona &minhapilha, valor);
+					processo->id = 1;
+					processo->name = "a";
+					processo->priority = 1;
+					processo->wait = 1;
+
+					adiciona (&minhapilha, processo);
 				}
 				break;
+
 			case 2:
 				if (minhapilha->topo == minhapilha->capacidade)
 					printf( "\nPILHA VAZIA! \n" );
+
 				else{
-					valor = exclui(&minhapilha);
-					printf ("\n%.1f DESEMPILHADO!\n", valor);
+					exclui(&minhapilha);
+					printf ("\nlimpo!\n");
 				}
+
 				break;
+
 			case 3:
 				if (minhapilha->topo == minhapilha->capacidade)
 					printf("\nPILHA VAZIA!\n");
+
 				else {
-					valor = minhapilha->prox[minhapilha->topo];
-					printf ( "\nTOPO: %.1f\n", valor );
+					processo = minhapilha->prox[minhapilha->topo];
+					printf ( "\nTOPO: %.1f\n", processo );
 				}
+
 				break;
 			case 4:
 				exit(0);
