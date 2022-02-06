@@ -1,4 +1,4 @@
 # reposicao-estr-dados
-<ol>
+<ul>
   <li>1 º questão: fila.c</li>
-</ol>
+</ul>
